@@ -1,0 +1,69 @@
+# This file is for development environment
+version: '3'
+services:
+    php:
+        image: cakewebsites/gandi:7.1-php-fpm
+        volumes:
+            - .:/var/www/html
+            - ./logs/cakephp:/var/www/html/logs
+        depends_on:
+            - db
+            - dbtest
+        environment:
+            - DEBUG=1
+            - APP_TIMEZONE_DEFAULT=UTC
+            - APP_DEFAULT_LOCALE=en_US
+            - APP_ENCODING=UTF-8
+            - CACHE_DEFAULT_URL=File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/
+            - CACHE_CAKECORE_URL=File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/
+            - CACHE_CAKEMODEL_URL=File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/
+            - EMAIL_TRANSPORT_DEFAULT_URL=mail://username:password@localhost:25?tls=null&client=null&timeout=30
+            - DATABASE_URL=mysql://user:pass@db/my_app?encoding=utf8&timezone=UTC
+            - DATABASE_TEST_URL=mysql://user:pass@dbtest/test_myapp?encoding=utf8&timezone=UTC
+            - LOG_DEBUG_URL=file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/
+            - LOG_ERROR_URL=file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/
+    db:
+        # mariadb is equivalent to mysql, and fully opensource
+        image: mariadb:10.1
+        # volumes:
+        #     - ./backup/dbdata:/var/lib/mysql
+        ports:
+            - 3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: my_app
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+    dbtest:
+        image: mariadb:10.1
+        # volumes:
+        #     ./backup/dbdata:/var/lib/mysql
+        ports:
+            - 3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: test_myapp
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+    nginx:
+        image: cakewebsites/gandi:nginx
+        ports:
+            - 80:80
+        depends_on:
+            - php
+        volumes:
+            - .:/var/www/html
+            - ./logs/nginx:/var/log/nginx
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8080:80
+        depends_on:
+            - db
+        environment:
+            PMA_USER: user
+            PMA_PASSWORD: pass
+volumes:
+    dbdata:
+    # - .:/var/www/html
+    # - ./backup/dbdata:/var/lib/mysql

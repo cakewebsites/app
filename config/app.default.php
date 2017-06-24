@@ -26,7 +26,7 @@ return [
      *   use CakePHP pretty URLs, remove these .htaccess
      *   files:
      *      /.htaccess
-     *      /webroot/.htaccess
+     *      /htdocs/.htaccess
      *   And uncomment the baseUrl key below.
      * - fullBaseUrl - A base URL to use for absolute links.
      * - imageBaseUrl - Web path to the public images directory under webroot.
@@ -39,10 +39,10 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'fr_FR'),
         'base' => false,
         'dir' => 'src',
-        'webroot' => 'webroot',
+        'webroot' => 'htdocs',
         'wwwRoot' => WWW_ROOT,
         // 'baseUrl' => env('SCRIPT_NAME'),
         'fullBaseUrl' => false,
