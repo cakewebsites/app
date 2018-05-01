@@ -40,7 +40,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 </head>
@@ -84,7 +84,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         <?php if (extension_loaded('mbstring')) : ?>
             <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
         <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>;
+            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>
         <?php endif; ?>
 
         <?php if (extension_loaded('openssl')) : ?>
@@ -181,8 +181,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
             <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/tutorials-and-examples/bookmarks/intro.html">The 15 min Bookmarker Tutorial</a></li>
             <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/tutorials-and-examples/blog/blog.html">The 15 min Blog Tutorial</a></li>
+            <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/tutorials-and-examples/cms/installation.html">The 15 min CMS Tutorial</a></li>
         </ul>
-        <p>
     </div>
 </div>
 
